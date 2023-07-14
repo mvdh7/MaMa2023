@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 vindta = []
-for vpath in ["labdata/Furious George", "labdata/R2-CO2"]:
+for vpath in ["labdata/R2-CO2", "labdata/Furious George"]:
     vfile = vpath + "/MaMa2023.dbs"
 
     # Import _vindta .dbs file
@@ -63,4 +63,4 @@ for vpath in ["labdata/Furious George", "labdata/R2-CO2"]:
 vindta = calk.Dataset(pd.concat(vindta).reset_index())
 
 # Save to file
-vindta.to_excel('results/vindta.xlsx')
+vindta.to_excel("results/vindta.xlsx")
