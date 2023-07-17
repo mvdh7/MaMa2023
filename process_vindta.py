@@ -10,6 +10,9 @@ for vpath in ["labdata/R2-CO2", "labdata/Furious George"]:
     _vindta = calk.read_dbs(vfile)
     # _vindta.to_excel(vpath + ' metadata.xlsx')
 
+    # Use temperature override
+    _vindta["temperature_override"] = 25
+
     # Add CRM details
     crm198 = {
         "dic": 2033.64,
@@ -63,4 +66,7 @@ for vpath in ["labdata/R2-CO2", "labdata/Furious George"]:
 vindta = calk.Dataset(pd.concat(vindta).reset_index())
 
 # Save to file
-vindta.to_excel("results/vindta.xlsx")
+vindta = vindta[vindta.analysis_datetime.dt.day == 14]
+vindta[["bottle", "alkalinity_certified", "alkalinity"]].to_csv(
+    "results/vindta.csv", index=False
+)
